@@ -1,5 +1,7 @@
 package telran.monitoring.model;
 
+import java.util.*;
+
 public class PulseJump {
 	
 	public long patientId;
@@ -23,6 +25,11 @@ public class PulseJump {
 		return "PulseJump [patientId=" + patientId + ", previousValue=" + previousValue + ", currentValue="
 				+ currentValue + ", timestamp=" + timestamp + "]";
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(currentValue, patientId, previousValue);
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -33,13 +40,7 @@ public class PulseJump {
 		if (getClass() != obj.getClass())
 			return false;
 		PulseJump other = (PulseJump) obj;
-		if (currentValue != other.currentValue)
-			return false;
-		if (patientId != other.patientId)
-			return false;
-		if (previousValue != other.previousValue)
-			return false;
-		return true;
+		return currentValue == other.currentValue && patientId == other.patientId && previousValue == other.previousValue;
 	}
 
 }

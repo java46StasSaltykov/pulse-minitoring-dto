@@ -1,27 +1,34 @@
 package telran.monitoring.model;
 
-public class PulseProbe {
+import java.util.*;
 
+public class PulseProbe {
+	
 	public long patientId;
-	public long timeStamp;
+	public long timestamp;
 	public long sequenceNumber;
 	public int value;
-	
-	public PulseProbe(long patientId, long timeStamp, long sequenceNumber, int value) {
+
+	public PulseProbe(long patientId, long timestamp, long sequenceNumber, int value) {
 		this.patientId = patientId;
-		this.timeStamp = timeStamp;
+		this.timestamp = timestamp;
 		this.sequenceNumber = sequenceNumber;
 		this.value = value;
 	}
 
+	public PulseProbe() {
+		
+	}
+
 	@Override
 	public String toString() {
-		return "PulseProbe [patientId=" + patientId + ", timeStamp=" + timeStamp + ", sequenceNumber=" + sequenceNumber
+		return "PulseProbe [patientId=" + patientId + ", timestamp=" + timestamp + ", sequenceNumber=" + sequenceNumber
 				+ ", value=" + value + "]";
 	}
 
-	public PulseProbe() {
-		
+	@Override
+	public int hashCode() {
+		return Objects.hash(patientId, value);
 	}
 
 	@Override
@@ -33,11 +40,7 @@ public class PulseProbe {
 		if (getClass() != obj.getClass())
 			return false;
 		PulseProbe other = (PulseProbe) obj;
-		if (patientId != other.patientId)
-			return false;
-		if (value != other.value)
-			return false;
-		return true;
+		return patientId == other.patientId && value == other.value;
 	}
-	
+
 }
